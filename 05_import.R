@@ -70,13 +70,13 @@ map(heroes, na_n)
 lapply(heroes, function(x) sum(is.na(x)) )
 map(heroes, function(x) sum(is.na(x)) )
 
-map(heroes, na_n)
+map_chr(heroes, na_n)
 heroes %>%
   map(na_n)
 
 B <- matrix(10:39, nrow = 5)
 apply(B, 1, mean)
-
+apply(B, 2, mean)
 10:39 %>%
   matrix(nrow = 5) %>%
   apply(1, mean)

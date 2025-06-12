@@ -79,7 +79,7 @@ n[-1]
 n[c(-2, -4, -9)]
 n
 n[c(2, 4, 9)]
-n[2,4,9] #не раболтает
+n[2,4,9] #не работает
 
 n[c(TRUE, FALSE, TRUE, FALSE, TRUE, 
     FALSE, TRUE, FALSE, TRUE, FALSE)]

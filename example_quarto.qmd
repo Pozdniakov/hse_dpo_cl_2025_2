@@ -1,0 +1,58 @@
+---
+title: "Example of Quarto"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(rdracor)
+library(plotly)
+```
+
+When you click the **Render** button a **document** will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+rus <- get_dracor("rus")
+rus_gender <- rus %>%
+  mutate(female_ratio = numOfSpeakersFemale/(numOfSpeakersFemale + numOfSpeakersMale)) %>%
+  select(playName, firstAuthorName, yearNormalized, female_ratio, numOfSpeakers) %>%
+  ggplot(aes(x = yearNormalized, y = female_ratio)) +
+  geom_hline(yintercept = c(0, 1), colour = "grey55") +
+  geom_hline(yintercept = .5, linetype = "dotted", colour = "grey55") +
+  geom_point(alpha = .6, aes(size = numOfSpeakers)) +
+  labs(x = "Год", y = "Доля женщин в пьесе", 
+       title = "Динамика гендерного баланса в пьесах русской классики") +
+  scale_y_continuous(labels = scales::percent) +
+  hrbrthemes::theme_ipsum()
+ggplotly(rus_gender)
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: true
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+Список:
+
+1.  раз
+
+2.  два
+
+3.  три
+
+Новый абзац
+
+![](https://quarto.org/docs/get-started/hello/images/rstudio-qmd-how-it-works.png)
